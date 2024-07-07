@@ -11,6 +11,14 @@
             padding: 0;
             height: 100%;
             width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        #message {
+            text-align: center;
+            font-size: 18px;
         }
         iframe {
             width: 100%;
@@ -20,13 +28,16 @@
     </style>
 </head>
 <body>
-    <iframe id="moviePlayer" referrerpolicy="origin"></iframe>
+    <div id="message">Please provide a movie ID in the URL. For example: ?id=299534</div>
+    <iframe id="moviePlayer" referrerpolicy="origin" style="display:none;"></iframe>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const tmdbId = urlParams.get('id');
         if (tmdbId) {
             document.getElementById('moviePlayer').src = `https://vidsrc.me/embed/${tmdbId}`;
+            document.getElementById('moviePlayer').style.display = 'block';
+            document.getElementById('message').style.display = 'none';
         }
     </script>
 </body>
